@@ -1,0 +1,25 @@
+{
+  "name": "fire-steam",
+  "version": "1.0.0",
+  "description": "Authentication via steam using firebase.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/kevalane/fire-steam"
+  },
+  "keywords": [
+    "firebase",
+    "firestore",
+    "steam",
+    "api",
+    "sign",
+    "in",
+    "through",
+    "steam"
+  ],
+  "author": "Kevin Rasmusson",
+  "license": "ISC"
+}
