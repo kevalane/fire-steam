@@ -63,13 +63,31 @@ app.use(passport.session());
 
 // Routes
 app.get('/', (req, res) => {
-  res.send(req.user);
+  // res.send(req.user);
+  res.status(200).send({token: req.session.token, steamid64: req.session.steamid64, credential: req.session.credential});
 });
 app.get('/api/auth/steam', passport.authenticate('steam', {failureRedirect: '/'}), function (req, res) {
   res.redirect('/');
 });
 
 app.get('/api/auth/steam/return', passport.authenticate('steam', {failureRedirect: '/'}), function (req, res) {
+  let profile = req.user;
+  let steamid64 = profile['_json']['steamid'];
+
+  // generate token with steamid
+  admin.auth().createCustomToken(steamid64).then(customToken => {
+    req.session.steamid64 = steamid64;
+    req.session.token = customToken;
+    req.session.save();
+
+    // sign in with token
+    return signInWithCustomToken(auth, customToken).then(userCredential => {
+      req.session.credential = userCredential;
+      req.session.save();
+    });
+  }).catch(err => {
+    console.log(err);
+  });
   res.redirect('/');
 });
 
