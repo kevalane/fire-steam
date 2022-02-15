@@ -21,5 +21,10 @@
     "steam"
   ],
   "author": "Kevin Rasmusson",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^9.6.6",
+    "firebase-admin": "^10.0.2"
+  },
+  "type": "module"
 }
